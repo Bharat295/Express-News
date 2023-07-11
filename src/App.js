@@ -5,8 +5,7 @@ import News from './Components/News';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  
+  Route
 } from "react-router-dom" 
 
 import React, { Component } from 'react'
