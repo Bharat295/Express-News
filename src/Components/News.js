@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import Spinner from './Spinner';
 import PropTypes from 'prop-types'
+require('dotenv').config();
 
 export class News extends Component {
-
+  
   static defaultProps = {
     country: 'in',
     pageSize: '20',
@@ -31,14 +32,16 @@ export class News extends Component {
 
   async componentDidMount(){
     // console.log("cdm");
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=13727f57ff5a42ca90dcb9a8e6fabfab&page=1&pageSize=${this.props.pageSize}&pageSize=${this.props.pageSize}`;
+    const API = '13727f57ff5a42ca90dcb9a8e6fabfab';
+    
+    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${API}&page=1&pageSize=${this.props.pageSize}&pageSize=${this.props.pageSize}`;
     let data = await fetch(url);
     let parsedData = await data.json();
     this.setState({
       articles: parsedData.articles,
       totalResults:parsedData.totalResults
     });
-    console.log("URL " + url);
+  
     // console.log(parsedData);
   }
 
